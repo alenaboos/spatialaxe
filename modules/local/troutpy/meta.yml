@@ -65,7 +65,7 @@ output:
       - "troutpy":
           type: string
           description: The name of the tool
-      - "python -c \"import importlib.metadata as m; print(m.version('troutpy'))\"":
+      - 'python -c "import importlib.metadata as m; print(m.version(''troutpy''))"':
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -77,7 +77,7 @@ topics:
       - troutpy:
           type: string
           description: The name of the tool
-      - "python -c \"import importlib.metadata as m; print(m.version('troutpy'))\"":
+      - 'python -c "import importlib.metadata as m; print(m.version(''troutpy''))"':
           type: eval
           description: The expression to obtain the version of the tool
 authors:
