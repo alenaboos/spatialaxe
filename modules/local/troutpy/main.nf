@@ -4,8 +4,8 @@ process TROUTPY {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container ?
-        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a8/a800ec5e91afe1cc0c02d31e85a9be5dae0060e01b319b4b63f5564444d618be/data':
-        'community.wave.seqera.io/library/python_pip_troutpysegmentation-freespatial-statsviz:6585d328bf611f4f' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/0e/0ebf19bee4775bb2607b945dc3583cb8c27a82a37515a08e8a34da1f19874694/data':
+        'community.wave.seqera.io/library/python_pip_python-igraph_leidenalg_troutpysegmentation-freespatial-statsviz:d929c604855328d3' }"
 
     input:
     tuple val(meta), path(spatialdata, stageAs: "input/*")
