@@ -1,54 +1,63 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-# # TODO nf-core: Add a description of the module and list keywords
 name: "troutpy"
-description: write your description here
+description: |
+  Analyse transcripts outside segmented cells (unassigned/extracellular RNA, uRNA) in a
+  SpatialData object with troutpy: segmentation-free Sainsc assignment, uRNA definition,
+  gene-centric metrics, spatial variability, uRNA source and diffusion, cell contacts and
+  decontamination of cell expression.
 keywords:
-  - sort
-  - example
-  - genomics
+  - spatialomics
+  - spatialdata
+  - xenium
+  - transcripts
+  - extracellular
+  - urna
+  - decontamination
 tools:
-  ## TODO nf-core: Add a description and other details for the software below
   - "troutpy":
-      description: ""
-      homepage: ""
-      documentation: ""
-      tool_dev_url: ""
-      doi: ""
-      licence: null
-      identifier: null
+      description: "Package for the analysis of transcripts outside segmented cells in python"
+      homepage: "https://github.com/sergiomarco25/troutpy"
+      documentation: "https://troutpy.readthedocs.io/"
+      tool_dev_url: "https://github.com/sergiomarco25/troutpy"
+      licence: ["BSD-3-Clause"]
+      identifier: ""
 
 input:
-  ### TODO nf-core: Add a description of all of the variables used as input
   - - meta:
         type: map
         description: |
           Groovy Map containing sample information
           e.g. `[ id:'sample1' ]`
-    - bam:
-        type: file
-        description: Sorted BAM/CRAM/SAM file
-        pattern: "*.{bam,cram,sam}"
-        ontologies:
-          - edam: "http://edamontology.org/format_2572" # BAM
-          - edam: "http://edamontology.org/format_2573" # CRAM
-          - edam: "http://edamontology.org/format_3462" # SAM
+    - spatialdata:
+        type: directory
+        description: |
+          SpatialData Zarr store (e.g. from SPATIALDATA_WRITE) with a `transcripts`
+          points layer and a `table` AnnData of cell counts
+        pattern: "*"
 
 output:
-  ### TODO nf-core: Add a description of all of the variables used as output
-  bam:
+  spatialdata:
     - - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1' ]`
-      - "*.bam":
-          type: file
-          description: Sorted BAM/CRAM/SAM file
-          pattern: "*.{bam,cram,sam}"
-          ontologies:
-            - edam: "http://edamontology.org/format_2572" # BAM
-            - edam: "http://edamontology.org/format_2573" # CRAM
-            - edam: "http://edamontology.org/format_3462" # SAM
+      - "${prefix}.zarr":
+          type: directory
+          description: SpatialData Zarr store annotated with troutpy results
+          pattern: "*.zarr"
+  report:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "report/troutpy":
+          type: directory
+          description: |
+            troutpy report folder with figures in `plots/` (PNG) and result
+            tables in `tables/` (CSV)
+          pattern: "report/troutpy"
   versions_troutpy:
     - - "${task.process}":
           type: string
@@ -56,7 +65,7 @@ output:
       - "troutpy":
           type: string
           description: The name of the tool
-      - "troutpy --version":
+      - "python -c \"import importlib.metadata as m; print(m.version('troutpy'))\"":
           type: eval
           description: The expression to obtain the version of the tool
 
@@ -68,7 +77,7 @@ topics:
       - troutpy:
           type: string
           description: The name of the tool
-      - troutpy --version:
+      - "python -c \"import importlib.metadata as m; print(m.version('troutpy'))\"":
           type: eval
           description: The expression to obtain the version of the tool
 authors:
