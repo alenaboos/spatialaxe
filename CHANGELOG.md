@@ -3,9 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.0.1dev - [date]
-
-Initial release of nf-core/spatialaxe, created with the [nf-core](https://nf-co.re/) template.
+## 1.0.1dev - [unreleased<!-- TODO nf-core: replace with date on release -->]
 
 ### `Added`
 
@@ -33,6 +31,7 @@ Initial release of nf-core/spatialaxe, created with the [nf-core](https://nf-co.
 - `subworkflows/nf-core/utils_nextflow_pipeline/main.nf`: bumped the version.
 - `subworkflows/local/utils_nfcore_spatialaxe_pipeline/main.nf`: passes the new `cli_typecast` argument (`null`) through to `UTILS_NFSCHEMA_PLUGIN`.
 - `nextflow_schema.json`: cleanup driven by the new schema version.
+- removing `image_seg_methods`, `transcript_seg_methods`, and `segfree_methods` from the input parameters because this is generally not defined by the user and fixed by he pipeline.
 
 ## 1.0.1 - [06.08.2026]
 

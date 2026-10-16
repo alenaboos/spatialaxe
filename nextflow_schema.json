@@ -220,30 +220,6 @@
                     "enum": ["xenium", "cosmx", "merscope"],
                     "description": "Input data platform. Used by proseg, segger, and spatialdata modules."
                 },
-                "image_seg_methods": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": ["cellpose", "xeniumranger", "baysor", "stardist"]
-                    },
-                    "description": "List of image-based segmentation methods."
-                },
-                "transcript_seg_methods": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": ["proseg", "segger", "baysor"]
-                    },
-                    "description": "List of transcript-based segmentation methods."
-                },
-                "segfree_methods": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": ["ficture", "baysor"]
-                    },
-                    "description": "List of segmentation-free methods."
-                },
                 "negative_control_regex": {
                     "type": "string",
                     "description": "Regex used to identify or match negative control samples in a dataset."

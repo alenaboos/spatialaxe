@@ -46,6 +46,13 @@ coordinate/multiqc/*/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_repo
 coordinate/multiqc/*/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report_data/multiqc.parquet
 coordinate/multiqc/*/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report_data/multiqc_data.json
 coordinate/multiqc/*/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report_data/multiqc_sources.txt
+# the Pre-Xeniumranger report is published to the top-level multiqc/ folder
+multiqc/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report.html
+multiqc/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report_data/llms-full.txt
+multiqc/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report_data/multiqc.log
+multiqc/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report_data/multiqc.parquet
+multiqc/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report_data/multiqc_data.json
+multiqc/MultiQC-*-Xeniumranger-import-segmentation-Run_multiqc_report_data/multiqc_sources.txt
 
 # xenium MultiQC module (multiqc-xenium-extra) only produces general stats/plots
 # when Xeniumranger's secondary analysis ran that execution, and its pdf/svg

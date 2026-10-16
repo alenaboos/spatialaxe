@@ -37,7 +37,6 @@ workflow PIPELINE_INITIALISATION {
     format                     // string: input data platform (xenium | cosmx | merscope)
     gene_panel                 // string: path to gene panel
     gene_synonyms              // string: path to gene synonyms
-    image_seg_methods          // list: valid image-mode segmentation methods
     method                     // string: chosen segmentation method
     mode                       // string: pipeline mode
     nucleus_segmentation_only  // boolean
@@ -46,7 +45,6 @@ workflow PIPELINE_INITIALISATION {
     reference_annotations      // string: path to reference annotations
     relabel_genes              // boolean
     segmentation_mask          // string: path to segmentation mask
-    transcript_seg_methods     // list: valid coordinate-mode segmentation methods
 
     main:
 
@@ -99,7 +97,7 @@ workflow PIPELINE_INITIALISATION {
         before_text,
         after_text,
         command,
-        null
+        false
     )
 
     //
@@ -117,8 +115,6 @@ workflow PIPELINE_INITIALISATION {
         mode,
         method,
         format,
-        image_seg_methods,
-        transcript_seg_methods,
         relabel_genes,
         gene_panel,
         nucleus_segmentation_only,
@@ -214,8 +210,6 @@ def validateInputParameters(
     mode,
     method,
     format,
-    image_seg_methods,
-    transcript_seg_methods,
     relabel_genes,
     gene_panel,
     nucleus_segmentation_only,
@@ -225,6 +219,10 @@ def validateInputParameters(
     reference_annotations,
     gene_synonyms
 ) {
+
+    def valid_image_seg_methods = ["cellpose", "xeniumranger", "baysor", "stardist"]
+    def valid_transcript_seg_methods = ["proseg", "segger", "baysor"]
+    def valid_segfree_methods = ["ficture", "baysor"]
 
     // check if conda profile is provided
     if (workflow.profile.contains('conda')) {
@@ -238,14 +236,20 @@ def validateInputParameters(
 
     // check if the segmentation method provided is valid for a mode
     if (mode == 'image' && method) {
-        if (!image_seg_methods.contains(method)) {
-            error("❌ Error: Invalid segmentation method: ${method} provided for the `image` based mode. Options: ${image_seg_methods}")
+        if (!valid_image_seg_methods.contains(method)) {
+            error("❌ Error: Invalid segmentation method: ${method} provided for the `image` based mode. Options: ${valid_image_seg_methods}")
         }
     }
 
     if (mode == 'coordinate' && method) {
-        if (!transcript_seg_methods.contains(method)) {
-            error("❌ Error: Invalid segmentation method: `${method}` provided for the `coordinate` based mode. Options: ${transcript_seg_methods}")
+        if (!valid_transcript_seg_methods.contains(method)) {
+            error("❌ Error: Invalid segmentation method: `${method}` provided for the `coordinate` based mode. Options: ${valid_transcript_seg_methods}")
+        }
+    }
+
+    if (mode == 'segfree' && method) {
+        if (!valid_segfree_methods.contains(method)) {
+            error("❌ Error: Invalid segmentation method: `${method}` provided for the `segfree` based mode. Options: ${valid_segfree_methods}")
         }
     }
 

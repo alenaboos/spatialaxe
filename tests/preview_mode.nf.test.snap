@@ -22,6 +22,12 @@
                 }
             },
             [
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/.stub",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/.stub",
+                "multiqc/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/nf_core_spatialaxe_software_mqc_versions.yml",
                 "preview",
@@ -33,12 +39,6 @@
                 "preview/baysor/preview/test_run",
                 "preview/baysor/preview/test_run/preview.html",
                 "preview/multiqc",
-                "preview/multiqc/raw_bundle",
-                "preview/multiqc/raw_bundle/multiqc_data",
-                "preview/multiqc/raw_bundle/multiqc_data/.stub",
-                "preview/multiqc/raw_bundle/multiqc_plots",
-                "preview/multiqc/raw_bundle/multiqc_plots/.stub",
-                "preview/multiqc/raw_bundle/multiqc_report.html",
                 "preview/multiqc/redefined_bundle",
                 "preview/multiqc/redefined_bundle/multiqc_data",
                 "preview/multiqc/redefined_bundle/multiqc_data/.stub",
@@ -83,11 +83,11 @@
                 "preview/utility/preview_data/test_run/umap_mqc.tsv"
             ],
             [
-                "sampled_transcripts.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "preview.html:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "sampled_transcripts.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "preview.html:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e",
@@ -121,7 +121,7 @@
                 "umap_mqc.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
             ]
         ],
-        "timestamp": "2026-08-14T11:36:14.951666276",
+        "timestamp": "2026-10-14T12:33:36.957304931",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

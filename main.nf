@@ -109,7 +109,6 @@ workflow {
         params.format,
         params.gene_panel,
         params.gene_synonyms,
-        params.image_seg_methods,
         params.method,
         params.mode,
         params.nucleus_segmentation_only,
@@ -118,7 +117,6 @@ workflow {
         params.reference_annotations,
         params.relabel_genes,
         params.segmentation_mask,
-        params.transcript_seg_methods,
     )
 
     //

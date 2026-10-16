@@ -33,12 +33,6 @@
             [
                 "coordinate",
                 "coordinate/multiqc",
-                "coordinate/multiqc/raw_bundle",
-                "coordinate/multiqc/raw_bundle/multiqc_data",
-                "coordinate/multiqc/raw_bundle/multiqc_data/.stub",
-                "coordinate/multiqc/raw_bundle/multiqc_plots",
-                "coordinate/multiqc/raw_bundle/multiqc_plots/.stub",
-                "coordinate/multiqc/raw_bundle/multiqc_report.html",
                 "coordinate/multiqc/redefined_bundle",
                 "coordinate/multiqc/redefined_bundle/multiqc_data",
                 "coordinate/multiqc/redefined_bundle/multiqc_data/.stub",
@@ -98,6 +92,12 @@
                 "coordinate/untar/test_run/nucleus_boundaries.parquet",
                 "coordinate/untar/test_run/transcripts.parquet",
                 "coordinate/untar/test_run/transcripts.zarr.zip",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/.stub",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/.stub",
+                "multiqc/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/nf_core_spatialaxe_software_mqc_versions.yml",
                 "xeniumranger",
@@ -108,16 +108,16 @@
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "fake_file.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "fake_file.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "fake_file.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "fake_file.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "fake_file.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "fake_file.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "fake_file.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "fake_file.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "multiqc_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
             ]
         ],
-        "timestamp": "2026-08-14T11:35:32.776028015",
+        "timestamp": "2026-10-14T14:44:57.749972779",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
