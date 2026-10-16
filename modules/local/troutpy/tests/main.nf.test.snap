@@ -1,0 +1,77 @@
+{
+    "xenium - spatialdata zarr - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_run"
+                        },
+                        [
+                            ".zgroup:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_run"
+                        },
+                        [
+                            [
+                                ".stub:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            [
+                                ".stub:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ]
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        "TROUTPY",
+                        "troutpy",
+                        "0.2.0"
+                    ]
+                ],
+                "report": [
+                    [
+                        {
+                            "id": "test_run"
+                        },
+                        [
+                            [
+                                ".stub:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ],
+                            [
+                                ".stub:md5,d41d8cd98f00b204e9800998ecf8427e"
+                            ]
+                        ]
+                    ]
+                ],
+                "spatialdata": [
+                    [
+                        {
+                            "id": "test_run"
+                        },
+                        [
+                            ".zgroup:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions_troutpy": [
+                    [
+                        "TROUTPY",
+                        "troutpy",
+                        "0.2.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-16T15:35:49.669431987",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.10.2"
+        }
+    }
+}

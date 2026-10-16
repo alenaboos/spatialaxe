@@ -61,6 +61,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--filter-min-logfc", type=float, default=7.0)
     parser.add_argument("--filter-max-p-val", type=float, default=0.05)
     parser.add_argument("--decontam-n-iter", type=int, default=5)
+    parser.add_argument("--min-genes", type=int, default=10, help="sc.pp.filter_cells min_genes")
+    parser.add_argument("--min-counts", type=int, default=30, help="sc.pp.filter_cells min_counts")
+    parser.add_argument("--min-cells", type=int, default=3, help="sc.pp.filter_genes min_cells")
     parser.add_argument(
         "--spatial-genes",
         default="",
@@ -156,6 +159,13 @@ def prepare_transcript_gene_column(sdata, gene_key: str, source_col: str) -> Non
 
     transcripts[gene_key] = transcripts[gene_key].astype("category")
 
+    # Sainsc needs 'overlaps_cell' (normally set by tp.pp.xenium_converter)
+    if "overlaps_cell" not in columns:
+        if "cell_id" not in columns:
+            raise ValueError("Transcripts need 'overlaps_cell' or 'cell_id' to derive it")
+        print("Creating 'overlaps_cell' from 'cell_id' != 'UNASSIGNED'.", file=sys.stderr)
+        transcripts["overlaps_cell"] = transcripts["cell_id"].astype(str) != "UNASSIGNED"
+
 
 def ensure_raw_layer(adata) -> None:
     """Decontamination uses adata.layers['raw'], not adata.raw alone."""
@@ -187,6 +197,9 @@ def prepare_cell_table(
     cell_type_col: str,
     skip_cell_clustering: bool,
     need_umap: bool,
+    min_genes: int = 10,
+    min_counts: int = 30,
+    min_cells: int = 3,
 ) -> None:
     """Tutorial §3: QC, normalize, cluster; leiden + cell_type + layers['raw']."""
     import scanpy as sc
@@ -205,9 +218,9 @@ def prepare_cell_table(
     else:
         print(f"Running Scanpy preprocessing and Leiden ('{celltype_key}')...", file=sys.stderr)
         all_cells = adata.shape[0]
-        sc.pp.filter_cells(adata, min_genes=10)
-        sc.pp.filter_cells(adata, min_counts=30)
-        sc.pp.filter_genes(adata, min_cells=3)
+        sc.pp.filter_cells(adata, min_genes=min_genes)
+        sc.pp.filter_cells(adata, min_counts=min_counts)
+        sc.pp.filter_genes(adata, min_cells=min_cells)
         print(
             f"Cells retained after filtering: {adata.shape[0] / max(all_cells, 1):.2%}",
             file=sys.stderr,
@@ -282,6 +295,9 @@ def run_analysis(args: argparse.Namespace) -> None:
         args.cell_type_col,
         args.skip_cell_clustering,
         need_umap=not args.skip_plots,
+        min_genes=args.min_genes,
+        min_counts=args.min_counts,
+        min_cells=args.min_cells,
     )
 
     print("Segmentation-free Sainsc...", file=sys.stderr)
@@ -481,6 +497,7 @@ def run_analysis(args: argparse.Namespace) -> None:
         sdata,
         layer="transcripts",
         lambda_decay=0.1,
+        k_neighbors=min(50, sdata["table"].n_obs),  # tiny test data has <50 cells
         copy=False,
         celltype_key=args.cell_type_col,
         gene_key="gene",

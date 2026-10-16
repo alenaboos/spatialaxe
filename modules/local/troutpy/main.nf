@@ -4,8 +4,8 @@ process TROUTPY {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/YOUR-TOOL-HERE':
-        'quay.io/biocontainers/YOUR-TOOL-HERE' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a8/a800ec5e91afe1cc0c02d31e85a9be5dae0060e01b319b4b63f5564444d618be/data':
+        'community.wave.seqera.io/library/python_pip_troutpysegmentation-freespatial-statsviz:6585d328bf611f4f' }"
 
     input:
     tuple val(meta), path(spatialdata, stageAs: "input/*")
@@ -22,9 +22,12 @@ process TROUTPY {
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    prefix = task.ext.prefix ?: "${meta.id}"
 
     """
+    export NUMBA_CACHE_DIR=\$PWD/.numba_cache
+    export MPLCONFIGDIR=\$PWD/.mplconfig
+
     troutpy_urna.py \\
         --input ${spatialdata} \\
         --output-zarr ${prefix}.zarr \\
@@ -34,7 +37,7 @@ process TROUTPY {
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    prefix = task.ext.prefix ?: "${meta.id}"
 
     """
     mkdir -p ${prefix}.zarr report/troutpy/plots report/troutpy/tables
